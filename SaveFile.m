@@ -57,9 +57,13 @@ I = handles.figure1.UserData.Picture;
 map = handles.figure1.UserData.MapFinal;
 s = handles.figure1.UserData.Scale;
 
-Z = zeros(size(I, 1), 20);
+Z = zeros(size(I, 1), 10);
 Z(1:s:end, :)=255;
-I = uint8(cat(2, I, Z));
+Z1 = zeros(size(I, 1), 10);
+Z1(1:s*5:end, :)=255;
+Z2 = zeros(size(I, 1), 10);
+Z2(1:s*10:end, :)=255;
+I = uint8(cat(2, I, Z2, Z1, Z));
 handles.figure1.UserData.Picture = I;
 
 axes(handles.axes1)
@@ -82,7 +86,14 @@ path = handles.figure1.UserData.Path;
 e = strfind(name, '.');
 for i = 1 : length(Pic)
     I = Pic(i).pic;
-    n = strcat(path, name(1:e-1), '_', num2str(i), name(e:end));
+    if i < 10
+        b = '00';
+    elseif i < 100
+        b = '0';
+    else
+        b = '';
+    end
+    n = strcat(path, name(1:e-1), '_', b, num2str(i), name(e:end));
     imwrite(I, map, n)
 end
 
