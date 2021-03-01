@@ -47,6 +47,8 @@ a.numeric = NumMatrix;
 
 Picture = EditObjectPicture(Pic, a);
 handles.figure1.UserData.Picture = Picture;
+map = MapFinal(Picture);
+handles.figure1.UserData.MapFinal = map;
 
 axes(handles.axes1)
 imshow(Picture, map)

@@ -25,6 +25,13 @@ function SaveFile_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 handles.figure1.UserData = varargin{1, 1};
 I = handles.figure1.UserData.Picture;
+
+%сделаем рамку в один пиксель
+K = zeros(size(I)+2);
+K(2:end-1, 2:end-1)=I;
+I = K;
+handles.figure1.UserData.Picture = I;
+
 map = handles.figure1.UserData.MapFinal;
 axes(handles.axes1)
 imshow(I, map)
@@ -145,5 +152,14 @@ Data = handles.figure1.UserData;
 EditPic(Data)
 close(handles.figure1)
 % hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+MainFile
+close(handles.figure1)
+% hObject    handle to pushbutton5 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)

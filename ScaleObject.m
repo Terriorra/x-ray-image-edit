@@ -47,7 +47,7 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
-[x, y] = ginput (2);
+[x, y] = myginput(2,'crosshair');
 % количество пикселей межу ними
 c = round((abs(x(1)-x(2))^2 + abs(y(1)-y(2))^2)^0.5);
 handles.figure1.UserData.Size = c;

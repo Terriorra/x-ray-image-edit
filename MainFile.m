@@ -104,7 +104,7 @@ if ~isempty(Data)
         if lengthScale ~=0
             %зададим размеры объектов
             %—читаем 2 точки
-            [x, y] = ginput (2);
+            [x, y] = myginput(2,'crosshair');
             axes(handles.axes1)
             hold on
             plot(x, y)

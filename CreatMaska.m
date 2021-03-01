@@ -7,7 +7,7 @@
 function Maska = CreatMaska(I, porog, scale, s)
 
 %Рамажу изображение
-I = imopen(I, strel('disk', round(scale/2)));
+I = imopen(I, strel('disk', 3));
 
 Maska = I>porog;
 

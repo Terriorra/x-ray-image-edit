@@ -102,7 +102,8 @@ c = unique(Maska(:, 1:10));
 d = unique(Maska(:, end-10:end));
 
 s = unique([a; b; c; d]);
-Maska = ~ismember(Maska, s);
+M = ~ismember(Maska, s);
+Maska = M & Maska;
 handles.figure1.UserData.Maska = Maska;
 
 plotPicture(handles)
@@ -128,7 +129,7 @@ plotPicture(handles)
 function pushbutton5_Callback(hObject, eventdata, handles)
 Maska = handles.figure1.UserData.Maska;
 L = zeros(size(Maska));
-[x, y] = ginput (2);
+[x, y] = myginput(2,'crosshair');
 L = PlotLine(L, x, y);
 Maska = ~L & Maska;
 handles.figure1.UserData.Maska = Maska;
@@ -142,7 +143,18 @@ plotPicture(handles)
 function pushbutton6_Callback(hObject, eventdata, handles)
 Maska = handles.figure1.UserData.Maska;
 
-[x, y] = ginput;
+
+[a, b] = myginput(1,'crosshair');
+x = [];
+y = [];
+axes(handles.axes1)
+hold on
+while ~isempty(a)
+    x = cat(1, x, a);
+    y = cat(1, y, b);
+    gscatter(x, y)
+    [a, b] = myginput(1,'crosshair');
+end
 x(end+1)=x(1);
 y(end+1)=y(1);
 
